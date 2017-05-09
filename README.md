@@ -2,7 +2,7 @@
 
 # Generate Certs and place it in the dirs showed in Treeview
 
-##Generate Certs for nginx
+## Generate Certs for nginx
 Create the CA Key and Certificate for signing Client Certs
 ```
 openssl genrsa -des3 -out ca.key 4096
@@ -31,7 +31,7 @@ Sign the client certificate with our CA cert.  Unlike signing our own server cer
 openssl x509 -req -days 365 -in client.csr -CA ca.crt -CAkey ca.key -set_serial 01 -out client.crt
 ```
 
-# Generate Xpra Certs
+## Generate Xpra Certs
 ```
 openssl req -x509 -newkey rsa:4096 -keyout server.key -out server.crt -days 365
 ```
