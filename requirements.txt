@@ -1,0 +1,8 @@
+setuptools
+pip
+wheel
+flask-restful
+numpy
+uwsgi
+pycuda
+
