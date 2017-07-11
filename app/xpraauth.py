@@ -4,17 +4,18 @@
 # https://blog.miguelgrinberg.com/post/designing-a-restful-api-using-flask-restful
 # Stackoverflow Posts
 
-from flask import Flask, jsonify, abort, make_response
-from flask_restful import Api, Resource, reqparse, fields, marshal
-from os.path import expanduser
-import os
-import uuid
-import logging
-import sys
 import argparse
+import logging
+import os
+import sys
+import uuid
+
+from flask import Flask, abort
+from flask_restful import Api, Resource, reqparse, fields, marshal
 
 application = Flask(__name__, static_url_path="")
 api = Api(application)
+
 
 
 # Static
@@ -200,7 +201,7 @@ class TargethostListAPI(Resource):
             abort(404)
             logging.warning("Not found!")
         logging.info("GET: " + str(targethost))
-        return [marshal(targethost, TARGETHOST_FIELDS_ID) for targethost in TARGETHOSTS],201
+        return [marshal(targethost, TARGETHOST_FIELDS_ID) for targethost in TARGETHOSTS],200
 
     def post(self):
         args = self.reqparse.parse_args()
@@ -232,7 +233,7 @@ class TargethostAPI(Resource):
         if len(targethost) == 0:
             abort(404)
             logging.warning("GET Not found: " + targethostuuid)
-        return marshal(targethost[0], TARGETHOST_FIELDS),201
+        return marshal(targethost[0], TARGETHOST_FIELDS),200
 
 
     def post(self, targethostuuid):
@@ -253,7 +254,7 @@ class TargethostAPI(Resource):
                 targethost[k] = v
         OtherStuff.update_item_xpra(targethostuuid,username,password,target_host)
         logging.info("POST: " + str(targethost))
-        return marshal(targethost, TARGETHOST_FIELDS_ID),201
+        return marshal(targethost, TARGETHOST_FIELDS_ID),200
 
     def delete(self, targethostuuid):
         targethost = [targethost for targethost in TARGETHOSTS if targethost['targethostUUID'] == targethostuuid]
@@ -263,17 +264,19 @@ class TargethostAPI(Resource):
         OtherStuff.delete_item_xpra_file(targethostuuid)
         logging.info("DELETE: " + str(targethost))
         TARGETHOSTS.remove(targethost[0])
-        return "No Data", 201
+        return "No Data", 204
 
     def __format__(self, format_spec):
         return super(TargethostAPI, self).__format__(format_spec)
 
     def put(self, targethostuuid):
-        return TargethostAPI.post(self,targethostuuid),201
+        return TargethostAPI.post(self,targethostuuid),200
 
 
 api.add_resource(TargethostListAPI, '/api/1/targethosts', endpoint='targethosts')
 api.add_resource(TargethostAPI, '/api/1/targethosts/<targethostuuid>', endpoint='targethost')
+
+
 
 
 if __name__ == '__main__':
