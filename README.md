@@ -67,3 +67,18 @@ openssl req -x509 -newkey rsa:4096 -keyout server.key -out server.crt -days 365
     ├── xpra_auth_file
     └── xpraauth.log
 ```
+
+# RestAPI Docu
+## GET /api/1/targethosts
+```
+HTTP/1.0 200 OK
+-get a List of all possible xpra_auth_file entries based on its UIDs as array
+format of sending data:
+-
+format of answer:
+[ {"id": "UUID" }, ... ]
+example:
+curl -H "Content-Type: application/json" http://localhost:5000/api/1/targethosts -X GET -v
+response:
+[{"id": "0b555840-c3e8-46ca-ad81-66efb41eab52"}, {"id": "263deb0a-13ba-4bb1-844b-e04d55324feb"}]
+```
