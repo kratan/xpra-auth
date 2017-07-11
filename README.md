@@ -97,7 +97,7 @@ response:
 {"id": "720c056f-138d-411f-88f7-5470af9ae42b"}
 ```
 
-## GET /api/1/targethosts/<UID>
+## GET /api/1/targethosts/`<UID>`
 ```
 HTTP/1.0 200 OK
 -get list for a special entry with a given UID
@@ -111,7 +111,7 @@ response:
 {"username": "tr8384", "targethost": "xpra2.svc.firecloud", "password": "geheimespw", "targethostUUID": "720c056f-138d-411f-88f7-5470af9ae42b"}
 ```
 
-## POST /api/1/targethosts/<UID>
+## POST /api/1/targethosts/`<UID>`
 ```
 HTTP/1.0 200 OK
 -updates an entry for a given UID
@@ -125,7 +125,7 @@ response:
 {"id": "720c056f-138d-411f-88f7-5470af9ae42b"}
 ```
 
-## DELETE /api/1/targethosts/<UID>
+## DELETE /api/1/targethosts/`<UID>`
 ```
 HTTP/1.0 204 OK
 -deletes an entry for a given UID
@@ -139,7 +139,7 @@ reponse:
 -
 ```
 
-## PUT /api/1/targethosts/<UID>
+## PUT /api/1/targethosts/`<UID>`
 ```
 same as POST /api/1/targethosts/<UID>
 ```
