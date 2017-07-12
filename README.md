@@ -1,3 +1,6 @@
+# Info
+RestAPI which Writes/Read to/from xpra proxy auth file formatted to  USERNAME|PASSWORD|||SESSION_URI|UUID|, described on https://xpra.org/trac/wiki/ProxyServer
+
 # Howto
 
 # Generate Certs and place it in the dirs showed in Treeview
